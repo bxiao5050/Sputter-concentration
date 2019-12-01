@@ -30,13 +30,3 @@ class AddRow(Frame):
 
 
 
-def main():
-    root = Tk()
-    app = AddRow(root)
-    app.pack()
-    root.mainloop()
-
-
-if __name__ == '__main__':
-    main()
-
