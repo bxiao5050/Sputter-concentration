@@ -76,8 +76,8 @@ class Main_concentration(Frame):
             v += float(row.ele_per.get())
         text = 100 - v
         self.remainder.config(text = text)
-        self.on_cal()
-
+        self.on_cal()        
+        
     def focus_leaveVolumn(self, e, rowN):
         ele = e.widget.get()
         if len(ele) > 0:
@@ -91,6 +91,10 @@ class Main_concentration(Frame):
                 self.nAR.get(rowN).ele_V.config(text = molarVolumn)
         self.on_cal()
     #parse the formular
+
+
+
+
 
 
     def on_cal(self):
