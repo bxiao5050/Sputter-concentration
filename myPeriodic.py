@@ -20,12 +20,6 @@ class MyPeriodic(PeriodicTable):
         self.entry.grid(row = 0, column = 0, padx = (5,5))
         button1.grid(row = 0, column = 1, padx = (5,5))
         button2.grid(row = 0, column = 2, padx = (5,5))
-
-    def on_reset(self):
-        self.entry.delete(0, 'end')
-
-    def on_eleName(self, text):
-        self.entry.insert('end', text)
         
     def on_OK(self):
         text = self.entry.get()
@@ -35,4 +29,8 @@ class MyPeriodic(PeriodicTable):
         self.ele_name.focus()
         self.master.destroy()
 
+    def on_reset(self):
+        self.entry.delete(0, 'end')
 
+    def on_eleName(self, text):
+        self.entry.insert('end', text)

@@ -33,12 +33,12 @@ class Main_concentration(Frame):
 
 
         # title
-        Label(self, text = 'Element', font='Helvetica 8 bold').grid(row = 2, column = 0, sticky = 's')
-        Label(self, text = 'Required\nComposition\n(at.%)', font='Helvetica 8 bold').grid(row = 2, column = 1, sticky = 'e')
-        Label(self, text = 'Measured\nRate\n(nm/W.s)', font='Helvetica 8 bold').grid(row = 2, column = 2)
-        Label(self, text = 'Molar\nVolumn\n(cm\u00b2)', font='Helvetica 8 bold').grid(row = 2, column = 3)
-        Label(self, text = 'Calculated\nThickness\n(nm)', font='Helvetica 8 bold').grid(row = 2, column = 4)
-        Label(self, text = 'Calculated\nPower\n(W)', font='Helvetica 8 bold').grid(row = 2, column = 5)
+        # Label(self, text = 'Element', font='Helvetica 8 bold').grid(row = 2, column = 0, sticky = 's')
+        # Label(self, text = 'Required\nComposition\n(at.%)', font='Helvetica 8 bold').grid(row = 2, column = 1, sticky = 'e')
+        # Label(self, text = 'Measured\nRate\n(nm/W.s)', font='Helvetica 8 bold').grid(row = 2, column = 2)
+        # Label(self, text = 'Molar\nVolumn\n(cm\u00b2)', font='Helvetica 8 bold').grid(row = 2, column = 3)
+        # Label(self, text = 'Calculated\nThickness\n(nm)', font='Helvetica 8 bold').grid(row = 2, column = 4)
+        # Label(self, text = 'Calculated\nPower\n(W)', font='Helvetica 8 bold').grid(row = 2, column = 5)
 
         #element row
         self.rowN = 0
@@ -55,7 +55,13 @@ class Main_concentration(Frame):
     def on_screenshot(self):
         subprocess.call(r'print.exe')
 
-
+    def focus_leave(self, e):
+        v = 0
+        for row in self.nAR.values():
+            v += float(row.ele_per.get())
+        text = 100 - v
+        self.remainder.config(text = text)
+        self.on_cal()        
     def on_addrow(self):
         self.rowN += 1
         self.nAR[self.rowN] = AddRow(self)
@@ -70,13 +76,7 @@ class Main_concentration(Frame):
         self.addB.grid(row = 3 + self.rowN, column = 0)
         self.calB.grid(row = 3 + self.rowN, column = 5)
 
-    def focus_leave(self, e):
-        v = 0
-        for row in self.nAR.values():
-            v += float(row.ele_per.get())
-        text = 100 - v
-        self.remainder.config(text = text)
-        self.on_cal()        
+
         
     def focus_leaveVolumn(self, e, rowN):
         ele = e.widget.get()
