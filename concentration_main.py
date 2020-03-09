@@ -33,12 +33,12 @@ class Main_concentration(Frame):
 
 
         # title
-        # Label(self, text = 'Element', font='Helvetica 8 bold').grid(row = 2, column = 0, sticky = 's')
-        # Label(self, text = 'Required\nComposition\n(at.%)', font='Helvetica 8 bold').grid(row = 2, column = 1, sticky = 'e')
-        # Label(self, text = 'Measured\nRate\n(nm/W.s)', font='Helvetica 8 bold').grid(row = 2, column = 2)
-        # Label(self, text = 'Molar\nVolumn\n(cm\u00b2)', font='Helvetica 8 bold').grid(row = 2, column = 3)
-        # Label(self, text = 'Calculated\nThickness\n(nm)', font='Helvetica 8 bold').grid(row = 2, column = 4)
-        # Label(self, text = 'Calculated\nPower\n(W)', font='Helvetica 8 bold').grid(row = 2, column = 5)
+        Label(self, text = 'Element', font='Helvetica 8 bold').grid(row = 2, column = 0, sticky = 's')
+        Label(self, text = 'Required\nComposition\n(at.%)', font='Helvetica 8 bold').grid(row = 2, column = 1, sticky = 'e')
+        Label(self, text = 'Measured\nRate\n(nm/W.s)', font='Helvetica 8 bold').grid(row = 2, column = 2)
+        Label(self, text = 'Molar\nVolumn\n(cm\u00b2)', font='Helvetica 8 bold').grid(row = 2, column = 3)
+        Label(self, text = 'Calculated\nThickness\n(nm)', font='Helvetica 8 bold').grid(row = 2, column = 4)
+        Label(self, text = 'Calculated\nPower\n(W)', font='Helvetica 8 bold').grid(row = 2, column = 5)
 
         #element row
         self.rowN = 0
@@ -61,7 +61,8 @@ class Main_concentration(Frame):
             v += float(row.ele_per.get())
         text = 100 - v
         self.remainder.config(text = text)
-        self.on_cal()        
+        self.on_cal()  
+
     def on_addrow(self):
         self.rowN += 1
         self.nAR[self.rowN] = AddRow(self)
@@ -76,7 +77,7 @@ class Main_concentration(Frame):
         self.addB.grid(row = 3 + self.rowN, column = 0)
         self.calB.grid(row = 3 + self.rowN, column = 5)
 
-
+      
         
     def focus_leaveVolumn(self, e, rowN):
         ele = e.widget.get()
@@ -90,11 +91,6 @@ class Main_concentration(Frame):
             if molarVolumn is not None:
                 self.nAR.get(rowN).ele_V.config(text = molarVolumn)
         self.on_cal()
-    #parse the formular
-
-
-
-
 
 
     def on_cal(self):
@@ -124,25 +120,3 @@ class Main_concentration(Frame):
 
 
 
-def main():
-    root = Tk()
-    root.title('Co-deposition')
-    app = Main_concentration(root)
-    app.pack()
-
-    # Gets the requested values of the height and widht.
-    windowWidth = root.winfo_reqwidth()
-    windowHeight = root.winfo_reqheight()
-    print("Width",windowWidth,"Height",windowHeight)
-
-    # Gets both half the screen width/height and window width/height
-    positionRight = int(root.winfo_screenwidth()/2 - windowWidth/2)
-    positionDown = int(root.winfo_screenheight()/2 - windowHeight/2)
-
-    # Positions the window in the center of the page.
-    root.geometry("+{}+{}".format(positionRight, positionDown))
-    root.mainloop()
-
-
-if __name__ == '__main__':
-    main()
