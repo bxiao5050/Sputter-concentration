@@ -24,8 +24,7 @@ class AddRow(Frame):
         self.ele_D.grid(row = 0, column = 5, padx = (15, 15), pady = (5,5))
         self.ele_W.grid(row = 0, column = 6, padx = (15, 15), pady = (5,5))
 
-    def on_periodic(self):
-        ele = MyPeriodic(Toplevel(), self.ele_name)
+ 
 
 
 

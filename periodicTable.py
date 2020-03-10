@@ -1,9 +1,4 @@
-#Byron Slabach
-#11/28/13
-#Final Project
-#Periodic Table of the Elements Study Table
 
-# from tkinter import *
 import tkinter as tk
 # Creates and Initiates class 'App'
 
@@ -491,18 +486,7 @@ class PeriodicTable(tk.Frame):
 
     # Displays information on the element of whichever element tk.Button was pressed
     def on_eleName(self, text):
-        print(text)
+        # print(text)
+        pass
 
 
-# Creates an instance of 'app' class
-def main():
-    root = tk.Tk()
-    a = PeriodicTable(root)
-
-    a.mainloop()
-    # root.mainloop()
-
-
-# runs main function
-if __name__ == "__main__":
-    main()
