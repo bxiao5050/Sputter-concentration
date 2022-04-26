@@ -61,7 +61,7 @@ class Main_concentration(Frame):
             v += float(row.ele_per.get())
         text = 100 - v
         self.remainder.config(text = text)
-        self.on_cal()  
+        self.on_cal()
 
     def on_addrow(self):
         self.rowN += 1
@@ -77,20 +77,7 @@ class Main_concentration(Frame):
         self.addB.grid(row = 3 + self.rowN, column = 0)
         self.calB.grid(row = 3 + self.rowN, column = 5)
 
-      
-        
-    def focus_leaveVolumn(self, e, rowN):
-        ele = e.widget.get()
-        if len(ele) > 0:
-            # print(self.data.head())
-            try:
-                molarVolumn = round(self.data[self.data['ele'] == ele].iat[0, 1], 4)
-            except IndexError:
-                return
-                molarVolumn = None
-            if molarVolumn is not None:
-                self.nAR.get(rowN).ele_V.config(text = molarVolumn)
-        self.on_cal()
+    #parse the formular
 
 
     def on_cal(self):
@@ -116,7 +103,40 @@ class Main_concentration(Frame):
         except:
             pass
 
+    def focus_leaveVolumn(self, e, rowN):
+        ele = e.widget.get()
+        if len(ele) > 0:
+            # print(self.data.head())
+            try:
+                molarVolumn = round(self.data[self.data['ele'] == ele].iat[0, 1], 4)
+            except IndexError:
+                return
+                molarVolumn = None
+            if molarVolumn is not None:
+                self.nAR.get(rowN).ele_V.config(text = molarVolumn)
+        self.on_cal()
 
 
 
+def main():
+    root = Tk()
+    root.title('Co-deposition')
+    app = Main_concentration(root)
+    app.pack()
 
+    # Gets the requested values of the height and widht.
+    windowWidth = root.winfo_reqwidth()
+    windowHeight = root.winfo_reqheight()
+    print("Width",windowWidth,"Height",windowHeight)
+
+    # Gets both half the screen width/height and window width/height
+    positionRight = int(root.winfo_screenwidth()/2 - windowWidth/2)
+    positionDown = int(root.winfo_screenheight()/2 - windowHeight/2)
+
+    # Positions the window in the center of the page.
+    root.geometry("+{}+{}".format(positionRight, positionDown))
+    root.mainloop()
+
+
+if __name__ == '__main__':
+    main()

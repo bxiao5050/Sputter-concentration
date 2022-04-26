@@ -20,7 +20,7 @@ class MyPeriodic(PeriodicTable):
         self.entry.grid(row = 0, column = 0, padx = (5,5))
         button1.grid(row = 0, column = 1, padx = (5,5))
         button2.grid(row = 0, column = 2, padx = (5,5))
-        
+
     def on_OK(self):
         text = self.entry.get()
         if text is not None:
@@ -34,3 +34,14 @@ class MyPeriodic(PeriodicTable):
 
     def on_eleName(self, text):
         self.entry.insert('end', text)
+
+def main():
+    root = Tk()
+
+    app = MyPeriodic(root)
+    app.pack()
+    root.mainloop()
+
+
+if __name__ == '__main__':
+    main()
